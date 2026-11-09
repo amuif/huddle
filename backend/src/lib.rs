@@ -6,12 +6,22 @@ use tower_http::trace::TraceLayer;
 /// Builds the application router. Kept separate from `main` so tests can drive it directly.
 pub fn app() -> Router {
     Router::new()
+        .route("/", get(root))
         .route("/health", get(health))
         .layer(TraceLayer::new_for_http())
 }
 
+async fn root() -> &'static str {
+    "main route"
+}
 async fn health() -> &'static str {
     "ok"
+}
+
+/// Symbol exported for `axum-hotreload` to dynamically recreate the router on changes.
+#[unsafe(no_mangle)]
+pub extern "Rust" fn axum_hotreload_build_router(_state: ()) -> Router<()> {
+    app()
 }
 
 #[cfg(test)]

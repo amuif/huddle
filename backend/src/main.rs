@@ -15,12 +15,30 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let listener = TcpListener::bind(config.addr).await?;
     tracing::info!("listening on {}", listener.local_addr()?);
 
-    axum::serve(listener, huddle::app())
+    let app = create_app().await?;
+
+    axum::serve(listener, app)
         .with_graceful_shutdown(shutdown_signal())
         .await?;
 
     tracing::info!("shut down cleanly");
     Ok(())
+}
+
+#[cfg(debug_assertions)]
+async fn create_app() -> Result<axum::Router<()>, Box<dyn std::error::Error>> {
+    let hot = axum_hotreload::HotReload::<()>::builder()
+        .package("huddle")
+        .state(())
+        .build()
+        .await?;
+
+    Ok(hot.into_router())
+}
+
+#[cfg(not(debug_assertions))]
+async fn create_app() -> Result<axum::Router<()>, Box<dyn std::error::Error>> {
+    Ok(huddle::app())
 }
 
 /// Resolves on Ctrl+C or SIGTERM (what `docker stop` sends), letting in-flight requests finish.
