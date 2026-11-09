@@ -15,7 +15,7 @@ To recreate this project with the same configuration:
 
 ```sh
 # recreate this project
-bun x sv@1.3.0 create --template minimal --types ts --add prettier vitest="usages:unit,component" eslint tailwindcss="plugins:typography,forms" enhanced-img better-auth="demo:password" ai-tools="ide:claude-code,gemini+delivery:plugin+tools:mcp,svelte-code-writer,svelte-core-bestpractices,svelte-file-editor+mcpSetup:remote+optInSkills:none" drizzle="database:postgresql+postgresql:postgres.js+docker:yes" --install bun .
+bun x sv@1.3.0 create --template minimal --types ts --add prettier vitest="usages:unit,component" eslint tailwindcss="plugins:typography,forms" enhanced-img ai-tools="ide:claude-code,gemini+delivery:plugin+tools:mcp,svelte-code-writer,svelte-core-bestpractices,svelte-file-editor+mcpSetup:remote+optInSkills:none" --install bun .
 ```
 
 ## Adding features

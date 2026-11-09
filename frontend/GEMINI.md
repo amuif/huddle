@@ -2,7 +2,7 @@
 
 - **Language**: TypeScript
 - **Package Manager**: bun
-- **Add-ons**: prettier, vitest, eslint, tailwindcss, enhanced-img, better-auth, ai-tools, drizzle
+- **Add-ons**: prettier, vitest, eslint, tailwindcss, enhanced-img, ai-tools
 
 ---
 
