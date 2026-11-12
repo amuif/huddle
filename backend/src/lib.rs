@@ -12,7 +12,7 @@ pub fn app() -> Router {
 }
 
 async fn root() -> &'static str {
-    "main route"
+    "main "
 }
 async fn health() -> &'static str {
     "ok"

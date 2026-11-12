@@ -9,6 +9,7 @@ crate-type = ["cdylib", "rlib"]
 [dependencies]
 axum = "0.8.9"
 axum-hotreload = "0.1.0"
+sqlx = { version = "0.9.0", features = ["macros"] }
 tokio = { version = "1.54.1", features = ["macros", "rt-multi-thread", "net", "signal"] }
 tower-http = { version = "0.7.1", features = ["trace"] }
 tracing = "0.1.44"
